@@ -1,0 +1,1641 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UnaMais — UNASLAF</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;600;700;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* paleta institucional clara */
+  --n:  #0F1A1A;   /* quase-preto com toque verde */
+  --n2: #1E3232;   /* verde-noite — só para accents */
+  --v:  #0D7C7C;   /* verde teal */
+  --vl: #E6F3F3;   /* verde muito claro */
+  --vlx:#F0F8F8;   /* verde quase branco */
+  --l:  #B8C400;   /* limão escurecido — mais elegante */
+  --ll: #F4F7C0;   /* limão claro */
+  --w:  #FFFFFF;
+  --g:  #F7F9F9;   /* cinza-verde clarissimo */
+  --g2: #EEF4F4;   /* cinza-verde claro */
+  --t:  #3D5555;   /* texto secundário */
+  --t2: #7A9595;   /* texto terciário */
+  --sep:#D6E6E6;   /* separadores */
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:'Barlow',sans-serif;background:var(--w);color:var(--n);overflow-x:hidden}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;height:56px;
+  background:var(--w);border-bottom:1px solid var(--sep);
+  padding:0 48px;display:flex;align-items:center;justify-content:space-between;
+}
+.logo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.2rem;letter-spacing:0.05em;color:var(--n);
+  text-decoration:none;display:flex;align-items:center;gap:0;
+}
+.logo-u{color:var(--n)}
+.logo-m{
+  background:var(--v);color:var(--w);
+  padding:1px 7px;margin-left:1px;
+  font-size:1.2rem;
+}
+.nav-r{display:flex;align-items:center;gap:32px}
+.nav-r a{
+  color:var(--t2);font-size:0.72rem;font-weight:600;
+  letter-spacing:0.1em;text-transform:uppercase;
+  text-decoration:none;transition:color .15s;
+}
+.nav-r a:hover,.nav-r a.act{color:var(--v)}
+.nav-cta{
+  background:var(--v)!important;color:var(--w)!important;
+  padding:7px 18px;font-size:0.72rem!important;
+  letter-spacing:0.1em;text-transform:uppercase;
+  transition:background .15s!important;
+}
+.nav-cta:hover{background:var(--n2)!important}
+
+/* ══ TICKER ══ */
+.ticker{
+  background:var(--v);overflow:hidden;
+  padding:7px 0;white-space:nowrap;margin-top:56px;
+}
+.tk-tag{
+  display:inline-block;background:var(--n);color:var(--w);
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:0.65rem;letter-spacing:0.16em;text-transform:uppercase;
+  padding:0 14px;margin-right:6px;
+}
+.tk{display:inline-block;animation:tk 40s linear infinite}
+.tk span{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.75rem;color:var(--w);letter-spacing:0.1em;
+  text-transform:uppercase;padding:0 20px;opacity:0.9;
+}
+.tk span::after{content:' · '}
+@keyframes tk{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ══ HERO ══ */
+.hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:calc(100vh - 80px);
+  background:var(--w);
+  position:relative;
+}
+/* faixa vertical esquerda */
+.hero::before{
+  content:'';position:absolute;
+  left:0;top:0;bottom:0;width:3px;
+  background:var(--v);
+}
+.hero-l{
+  padding:72px 56px 72px 56px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;z-index:2;
+  border-right:1px solid var(--sep);
+}
+/* pill categoria */
+.pill-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--vl);color:var(--v);
+  font-size:0.65rem;font-weight:700;letter-spacing:0.16em;text-transform:uppercase;
+  padding:5px 12px;border-radius:2px;
+  margin-bottom:28px;width:fit-content;
+  border:1px solid var(--sep);
+}
+.pill-tag::before{
+  content:'';display:block;width:6px;height:6px;
+  border-radius:50%;background:var(--v);
+}
+.hero-h{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(3rem,5.5vw,5.2rem);
+  line-height:0.95;letter-spacing:-0.015em;color:var(--n);
+  margin-bottom:8px;
+}
+.hero-h em{
+  color:var(--v);font-style:normal;
+  display:block;
+}
+.hero-slogan{
+  font-family:'Barlow Condensed',sans-serif;font-weight:300;
+  font-size:clamp(1rem,1.8vw,1.35rem);
+  color:var(--t);letter-spacing:0.04em;
+  margin-bottom:28px;line-height:1.35;
+  padding-left:14px;border-left:2px solid var(--sep);
+}
+.hero-sub{
+  font-size:0.92rem;font-weight:300;color:var(--t);
+  max-width:400px;line-height:1.78;margin-bottom:36px;
+}
+.hero-sub strong{font-weight:600;color:var(--n)}
+.hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+.btn-p{
+  background:var(--n);color:var(--w);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:11px 26px;text-decoration:none;
+  transition:background .15s;
+}
+.btn-p:hover{background:var(--v)}
+.btn-o{
+  border:1.5px solid var(--sep);color:var(--t);
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:0.75rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:10px 24px;text-decoration:none;
+  transition:border-color .15s,color .15s;
+}
+.btn-o:hover{border-color:var(--v);color:var(--v)}
+
+/* stats hero */
+.hero-stats{
+  display:flex;gap:0;margin-top:40px;
+  padding-top:24px;border-top:1px solid var(--sep);
+}
+.hs{flex:1}
+.hs+.hs{border-left:1px solid var(--sep);padding-left:20px}
+.hs-n{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.7rem;line-height:1;color:var(--v);
+}
+.hs-l{font-size:0.62rem;font-weight:500;color:var(--t2);
+  letter-spacing:0.1em;text-transform:uppercase;margin-top:3px}
+
+/* foto hero */
+.hero-r{position:relative;overflow:hidden;background:var(--g)}
+.hero-r img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:40% top;
+  display:block;filter:saturate(0.75);
+}
+.hero-r::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(95deg,var(--w) 0%,rgba(255,255,255,0.05) 25%,transparent 50%);
+}
+/* lower third claro */
+.lt{
+  position:absolute;bottom:0;left:0;right:0;z-index:3;
+  display:flex;align-items:stretch;
+}
+.lt-acc{width:3px;background:var(--v);flex-shrink:0}
+.lt-body{
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(8px);
+  border-top:1px solid var(--sep);
+  padding:10px 16px;flex:1;
+}
+.lt-cargo{
+  font-size:0.58rem;font-weight:700;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--v);margin-bottom:2px;
+}
+.lt-nome{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.05rem;color:var(--n);letter-spacing:0.02em;
+}
+.lt-desc{font-size:0.68rem;font-weight:300;color:var(--t);margin-top:1px}
+
+/* countdown claro */
+.hero-cd{
+  position:absolute;top:20px;right:20px;z-index:4;
+  background:rgba(255,255,255,0.92);
+  backdrop-filter:blur(8px);
+  border:1px solid var(--sep);
+  border-top:2px solid var(--v);
+  padding:12px 16px;
+}
+.cd-lbl{font-size:0.55rem;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--t2);margin-bottom:7px}
+.cd-row{display:flex;gap:8px;align-items:center}
+.cd-u{text-align:center}
+.cd-n{font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.3rem;color:var(--v);line-height:1;min-width:26px}
+.cd-s{font-size:0.46rem;font-weight:600;color:var(--t2);
+  letter-spacing:0.1em;text-transform:uppercase}
+.cd-dot{font-size:0.8rem;color:var(--sep);font-weight:300}
+
+/* ══ FAIXA SLOGAN ══ */
+.slogan-bar{
+  background:var(--vl);
+  border-top:1px solid var(--sep);border-bottom:1px solid var(--sep);
+  padding:20px 48px;
+  display:flex;align-items:center;gap:16px;
+}
+.slogan-mark{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--v);background:var(--v);color:var(--w);
+  padding:3px 10px;white-space:nowrap;flex-shrink:0;
+}
+.slogan-txt{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:clamp(0.9rem,1.8vw,1.2rem);color:var(--n);
+  letter-spacing:0.04em;
+}
+
+/* ══ SEÇÕES ══ */
+.s{padding:80px 48px;background:var(--w)}
+.s-g{padding:80px 48px;background:var(--g)}
+.s-g2{padding:80px 48px;background:var(--g2)}
+.s-v{padding:80px 48px;background:var(--vl)}
+.s-in{max-width:1080px;margin:0 auto}
+
+/* cabeçalho de seção */
+.sec-h{display:flex;align-items:center;gap:12px;margin-bottom:40px}
+.sec-tag{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--w);background:var(--v);padding:4px 12px;
+}
+.sec-sub{
+  font-family:'Barlow Condensed',sans-serif;font-weight:600;
+  font-size:0.62rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--t2);
+}
+h2.t{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(1.9rem,3.2vw,2.8rem);
+  color:var(--n);letter-spacing:-0.01em;line-height:1.05;
+  margin-bottom:12px;
+}
+h2.t em{color:var(--v);font-style:normal}
+.lead{font-size:0.88rem;font-weight:300;color:var(--t);
+  max-width:540px;line-height:1.78;margin-bottom:48px}
+
+/* ══ NÚMEROS ══ */
+.nums{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--sep);border-radius:4px;overflow:hidden;
+}
+.num-c{
+  padding:32px 28px;border-right:1px solid var(--sep);
+  transition:background .15s;
+}
+.num-c:last-child{border-right:none}
+.num-c:hover{background:var(--vl)}
+.num-v{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:2.4rem;color:var(--v);line-height:1;margin-bottom:6px;
+}
+.num-v sup{font-size:.55em;vertical-align:super}
+.num-l{font-size:0.7rem;font-weight:500;color:var(--t2);
+  letter-spacing:0.05em;line-height:1.4}
+
+/* ══ TIMELINE ══ */
+.tl{position:relative;margin-top:44px}
+.tl-track{
+  position:absolute;left:0;right:0;top:8px;height:1px;
+  background:var(--sep);
+}
+.tl-fill{
+  position:absolute;left:0;top:8px;height:1px;
+  background:linear-gradient(90deg,var(--v),var(--l));
+  width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1);
+}
+.tl.vis .tl-fill{width:100%}
+.tl-g{
+  display:grid;grid-template-columns:repeat(6,1fr);
+  position:relative;z-index:1;
+}
+.tl-item{padding:0 10px 0 0}
+.tl-dot{
+  width:16px;height:16px;border-radius:50%;
+  background:var(--w);border:1.5px solid var(--sep);
+  margin-bottom:16px;position:relative;z-index:1;
+  transition:background .25s,border-color .25s,box-shadow .25s;
+}
+.tl-item.hi .tl-dot{
+  background:var(--v);border-color:var(--v);
+  box-shadow:0 0 0 3px var(--vl);
+}
+.tl-ano{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.8rem;letter-spacing:0.1em;color:var(--v);margin-bottom:5px;
+}
+.tl-tx{font-size:0.75rem;font-weight:300;color:var(--t);line-height:1.5}
+.tl-item.hi .tl-tx{color:var(--n);font-weight:400}
+
+/* ══ PROGRAMA ══ */
+.prog{display:grid;grid-template-columns:220px 1fr;gap:64px;align-items:start}
+.prog-stick{position:sticky;top:68px}
+.prog-stick .lead{margin-bottom:0;font-size:0.84rem}
+.prog-lista{display:flex;flex-direction:column}
+.pi{
+  display:grid;grid-template-columns:36px 1fr;gap:0 16px;
+  padding:24px 0;border-top:1px solid var(--sep);align-items:start;
+  transition:padding .18s,background .18s;
+}
+.pi:last-child{border-bottom:1px solid var(--sep)}
+.pi:hover{background:var(--vl);padding:24px 14px;margin:0 -14px;border-radius:4px}
+.pi-n{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.3rem;color:var(--sep);line-height:1;padding-top:2px;
+}
+.pi:hover .pi-n{color:var(--v)}
+.pi h3{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:1.05rem;color:var(--n);margin-bottom:5px;letter-spacing:0.01em;
+}
+.pi p{font-size:0.82rem;font-weight:300;color:var(--t);line-height:1.65}
+.pi ul{margin-top:8px;padding:0;list-style:none;display:flex;flex-direction:column;gap:4px}
+.pi ul li{font-size:0.78rem;color:var(--t);padding-left:14px;
+  position:relative;line-height:1.5}
+.pi ul li::before{content:'→';position:absolute;left:0;color:var(--v);font-weight:600}
+
+/* ══ ADI STATUS ══ */
+.adi-g{display:grid;grid-template-columns:repeat(4,1fr);
+  gap:12px;margin-top:44px}
+.adi-c{
+  border:1.5px solid var(--sep);border-radius:6px;
+  padding:24px 20px;border-top-width:2px;
+  transition:transform .2s,box-shadow .2s;
+}
+.adi-c:hover{transform:translateY(-2px);box-shadow:0 4px 16px rgba(13,124,124,0.08)}
+.adi-c.ok{border-top-color:var(--v);background:var(--vlx)}
+.adi-c.hot{border-top-color:var(--l);background:rgba(184,196,0,0.06)}
+.adi-c.pend{border-top-color:var(--sep)}
+.adi-badge{
+  display:inline-block;font-size:0.58rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  padding:3px 9px;border-radius:100px;margin-bottom:14px;
+}
+.adi-c.ok .adi-badge{background:var(--vl);color:var(--v);border:1px solid var(--v)}
+.adi-c.hot .adi-badge{background:var(--ll);color:#7A8200;border:1px solid var(--l)}
+.adi-c.pend .adi-badge{background:var(--g);color:var(--t2);border:1px solid var(--sep)}
+.adi-ico{font-size:1.3rem;margin-bottom:10px}
+.adi-c h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.95rem;color:var(--n);margin-bottom:5px;line-height:1.2}
+.adi-c.hot h4{color:#5C6600}
+.adi-c p{font-size:0.76rem;font-weight:300;color:var(--t);line-height:1.55}
+
+/* ══ PRESIDENTE ══ */
+.pres-wrap{
+  display:grid;grid-template-columns:240px 1fr;
+  gap:48px;align-items:start;
+  padding-bottom:48px;margin-bottom:48px;
+  border-bottom:1px solid var(--sep);
+}
+.pres-img{position:relative;border-radius:4px;overflow:hidden;display:flex;flex-direction:column}
+.pres-img img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block;filter:saturate(0.85)}
+.pres-lt{
+  display:flex;align-items:stretch;
+}
+.pres-lt-acc{width:3px;background:var(--v);flex-shrink:0}
+.pres-lt-body{
+  background:rgba(255,255,255,0.93);backdrop-filter:blur(6px);
+  border-top:1px solid var(--sep);padding:7px 12px;flex:1;
+}
+.pres-lt-cargo{font-size:0.55rem;font-weight:700;letter-spacing:0.16em;
+  text-transform:uppercase;color:var(--v);margin-bottom:2px}
+.pres-lt-nome{font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:0.95rem;color:var(--n);letter-spacing:0.02em}
+.pres-info .pill-tag{margin-bottom:12px}
+.pres-info h3{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(1.6rem,2.4vw,2.2rem);color:var(--n);
+  letter-spacing:-0.01em;line-height:1.05;margin-bottom:12px;
+}
+.pres-info h3 em{color:var(--v);font-style:normal}
+.pres-info p{font-size:0.86rem;font-weight:300;color:var(--t);
+  line-height:1.78;max-width:460px;margin-bottom:10px}
+.pres-info p strong{font-weight:600;color:var(--n)}
+
+/* ══ CARDS CANDIDATOS ══ */
+.cg{
+  display:grid;
+  --colw:calc((100% - 18px) / 7);
+  grid-template-columns:repeat(var(--cols,7),var(--colw));
+  justify-content:start;
+  gap:3px;
+}
+.mc{position:relative;overflow:hidden;border-radius:3px;display:flex;flex-direction:column}
+.mc-img{
+  width:100%;aspect-ratio:1/1;
+  background-size:cover;background-position:center;
+  filter:saturate(0.55) brightness(0.85);
+  transition:filter .25s;
+}
+.mc:hover .mc-img{filter:saturate(0.8) brightness(1)}
+.mc-info{
+  background:rgba(255,255,255,0.93);
+  border-top:1px solid var(--sep);
+  padding:7px 9px;
+  border-left:2px solid var(--v);
+}
+.mc-cargo{
+  display:block;font-size:0.5rem;font-weight:700;letter-spacing:0.14em;
+  text-transform:uppercase;color:var(--v);margin-bottom:1px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mc-nome{
+  display:block;font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.82rem;color:var(--n);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.mc-uf{
+  display:block;font-size:0.62rem;font-weight:300;color:var(--t2);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.grp-lbl{
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.62rem;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--t2);margin:24px 0 6px;
+  display:flex;align-items:center;gap:10px;
+}
+.grp-lbl::before{content:'';display:block;width:10px;height:1px;background:var(--sep)}
+.sub-lbl{font-size:0.58rem;font-weight:600;letter-spacing:0.12em;
+  text-transform:uppercase;color:var(--sep);margin:8px 0 4px;
+  border-left:2px solid var(--sep);padding-left:6px}
+
+/* ══ INTERATIVIDADE — SELEÇÃO DE CANDIDATO ══ */
+.mc{cursor:pointer}
+.mc.active{box-shadow:inset 0 0 0 2px var(--v)}
+.mc.active .mc-info{border-left:3px solid var(--l)}
+.mc.active .mc-img{filter:saturate(0.85) brightness(1.02)}
+.pres-reset{
+  display:none;margin-top:14px;background:none;border:none;padding:0;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--v);cursor:pointer;text-decoration:underline;
+  text-decoration-color:var(--sep);text-underline-offset:3px;
+}
+.pres-reset:hover{color:var(--n)}
+
+/* ══ MANIFESTO ══ */
+.man{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.man-q{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(1.6rem,2.4vw,2.1rem);color:var(--n);
+  line-height:1.15;letter-spacing:-0.01em;
+  border-left:3px solid var(--v);padding-left:20px;
+}
+.man-q em{color:var(--v);font-style:normal;display:block}
+.man-body p{font-size:0.88rem;font-weight:300;color:var(--t);
+  line-height:1.8;margin-bottom:14px}
+.man-body p strong{font-weight:600;color:var(--n)}
+
+/* ══ MATERIAIS ══ */
+.mat-g{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:44px}
+.mat-c{
+  border:1.5px solid var(--sep);border-radius:6px;
+  padding:24px 20px;display:flex;flex-direction:column;gap:10px;
+  text-decoration:none;background:var(--w);
+  transition:border-color .15s,transform .2s;
+}
+.mat-c:hover{border-color:var(--v);transform:translateY(-2px)}
+.mat-ico{
+  width:38px;height:38px;border-radius:6px;
+  background:var(--vl);display:flex;align-items:center;
+  justify-content:center;font-size:1.1rem;
+}
+.mat-c h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.95rem;color:var(--n);letter-spacing:0.02em}
+.mat-c p{font-size:0.78rem;font-weight:300;color:var(--t);line-height:1.5;flex:1}
+.em-breve{
+  font-size:0.58rem;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--t2);border:1px solid var(--sep);
+  padding:2px 8px;border-radius:100px;width:fit-content;
+}
+
+/* ══ FAQ ══ */
+.faq{display:flex;flex-direction:column;gap:2px;margin-top:44px}
+.fq{
+  border:1.5px solid var(--sep);border-radius:6px;overflow:hidden;
+  background:var(--w);transition:border-color .15s;
+}
+.fq.open{border-color:var(--v)}
+.fq-q{
+  padding:15px 18px;cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:12px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.98rem;color:var(--t);transition:color .15s;user-select:none;
+}
+.fq-q:hover,.fq.open .fq-q{color:var(--v)}
+.fq-ico{
+  width:20px;height:20px;border-radius:50%;
+  border:1.5px solid var(--sep);flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Barlow',sans-serif;font-weight:300;font-size:1rem;
+  transition:all .25s;color:var(--t2);
+}
+.fq.open .fq-ico{
+  border-color:var(--v);background:var(--v);
+  color:var(--w);transform:rotate(45deg);
+}
+.fq-a{max-height:0;overflow:hidden;transition:max-height .32s ease}
+.fq.open .fq-a{max-height:300px}
+.fq-a p{padding:0 18px 14px;font-size:0.83rem;font-weight:300;
+  color:var(--t);line-height:1.72}
+
+/* ══ APOIO ══ */
+.apoio{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+.apoio-l p{font-size:0.86rem;font-weight:300;color:var(--t);
+  line-height:1.75;margin-top:10px}
+.form{display:flex;flex-direction:column;gap:8px}
+.fi{
+  padding:11px 14px;
+  border:1.5px solid var(--sep);background:var(--w);color:var(--n);
+  font-family:'Barlow',sans-serif;font-size:0.85rem;border-radius:4px;
+  outline:none;transition:border-color .15s;appearance:none;
+}
+.fi:focus{border-color:var(--v)}
+.fi::placeholder{color:var(--t2)}
+.btn-form{
+  background:var(--v);color:var(--w);border:none;
+  padding:12px 20px;font-family:'Barlow Condensed',sans-serif;
+  font-weight:700;font-size:0.8rem;letter-spacing:0.12em;
+  text-transform:uppercase;cursor:pointer;transition:background .15s;
+  border-radius:2px;
+}
+.btn-form:hover{background:var(--n2)}
+.ok-box{
+  display:none;padding:14px 16px;
+  background:var(--vl);border:1.5px solid var(--v);
+  border-radius:4px;font-size:0.83rem;font-weight:500;color:var(--v);
+}
+.redes{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.rede{
+  display:inline-flex;align-items:center;gap:6px;
+  border:1.5px solid var(--sep);color:var(--t);
+  font-size:0.72rem;font-weight:500;padding:6px 12px;
+  text-decoration:none;border-radius:100px;transition:border-color .15s,color .15s;
+}
+.rede:hover{border-color:var(--v);color:var(--v)}
+
+/* ══ CTA ══ */
+.cta-sec{
+  background:var(--n);padding:88px 48px;text-align:center;
+  position:relative;overflow:hidden;
+}
+.cta-sec::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(13,124,124,0.15),transparent);
+  pointer-events:none;
+}
+.cta-inner{position:relative;z-index:2}
+.cta-sec h2{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:clamp(2.5rem,5vw,4rem);color:var(--w);
+  line-height:0.95;letter-spacing:-0.01em;margin-bottom:14px;
+}
+.cta-sec h2 em{color:var(--l);font-style:normal}
+.cta-sec p{
+  font-size:0.88rem;font-weight:300;color:rgba(255,255,255,0.55);
+  max-width:360px;margin:0 auto 30px;line-height:1.75;
+}
+.btn-wpp{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--w);color:var(--n);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.78rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:13px 30px;text-decoration:none;border-radius:2px;
+  transition:background .15s,color .15s;
+}
+.btn-wpp:hover{background:var(--l);color:var(--n)}
+.btn-wpp svg{width:18px;height:18px}
+
+/* ══ FOOTER ══ */
+footer{
+  border-top:1px solid var(--sep);padding:24px 48px;background:var(--w);
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:12px;
+}
+.flogo{
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:1.1rem;color:var(--n);
+  display:flex;align-items:center;gap:0;
+}
+.flogo-m{background:var(--v);color:var(--w);padding:1px 6px;margin-left:1px}
+footer p{font-size:0.68rem;color:var(--t2);line-height:1.5}
+
+/* ══ REVEAL ══ */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rv.vis{opacity:1;transform:none}
+
+/* ══ RESPONSIVE ══ */
+@media(max-width:900px){
+  nav{padding:0 20px}
+  .hero{grid-template-columns:1fr}
+  .hero-r{height:auto;width:100%;aspect-ratio:4/5;max-height:560px}
+  .hero-l{padding:52px 24px}
+  .s,.s-g,.s-g2,.s-v{padding:60px 24px}
+  .slogan-bar{padding:16px 24px}
+  .prog{grid-template-columns:1fr;gap:28px}
+  .prog-stick{position:static}
+  .nums{grid-template-columns:repeat(2,1fr)}
+  .tl-g{grid-template-columns:repeat(3,1fr)}
+  .adi-g{grid-template-columns:repeat(2,1fr)}
+  .mat-g{grid-template-columns:repeat(2,1fr)}
+  .man,.apoio{grid-template-columns:1fr}
+  .pres-wrap{grid-template-columns:1fr;gap:24px}
+  .pres-img{max-width:200px}
+  .cg{grid-template-columns:repeat(3,1fr)!important}
+  footer{padding:20px 24px;flex-direction:column;text-align:center}
+  .hero-cd{display:none}
+}
+@media(max-width:500px){
+  .nums{grid-template-columns:1fr 1fr}
+  .adi-g,.mat-g{grid-template-columns:1fr}
+  .cg{grid-template-columns:repeat(2,1fr)!important}
+}
+
+/* ══ MOLDURA INTERATIVA ══ */
+.moldura-sec{padding:80px 48px;background:var(--g)}
+.moldura-layout{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:start;margin-top:48px}
+.moldura-painel{background:var(--w);border:1.5px solid var(--sep);border-radius:8px;overflow:hidden}
+.mp-head{padding:14px 20px;border-bottom:1px solid var(--sep);
+  display:flex;align-items:center;gap:10px}
+.mp-tag{background:var(--v);color:var(--w);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.58rem;letter-spacing:0.18em;text-transform:uppercase;padding:3px 10px}
+.mp-head h3{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.95rem;color:var(--n)}
+.mp-body{padding:20px}
+.moldura-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:20px}
+.mo{cursor:pointer;border:2px solid var(--sep);border-radius:6px;
+  padding:10px 6px;text-align:center;transition:border-color .15s,background .15s}
+.mo.act{border-color:var(--v);background:var(--vl)}
+.mo:hover{border-color:var(--v)}
+.mo canvas{display:block;margin:0 auto 6px;border-radius:50%}
+.mo span{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.6rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--t)}
+.mo.act span{color:var(--v)}
+.upload-zone{border:2px dashed var(--sep);border-radius:6px;
+  padding:24px 16px;text-align:center;cursor:pointer;
+  transition:border-color .15s,background .15s;position:relative;margin-bottom:14px}
+.upload-zone:hover,.upload-zone.drag{border-color:var(--v);background:var(--vl)}
+.upload-zone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.upload-zone .uz-ico{font-size:1.6rem;margin-bottom:6px}
+.upload-zone h4{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.92rem;color:var(--n);margin-bottom:3px}
+.upload-zone p{font-size:0.72rem;color:var(--t2);font-weight:300}
+.upload-zone .uz-btn{display:inline-block;margin-top:10px;
+  background:var(--v);color:var(--w);
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;
+  padding:8px 18px;border-radius:2px}
+.m-controls{display:none}
+.m-ctrl{margin-bottom:10px}
+.m-ctrl label{font-size:0.68rem;font-weight:600;color:var(--t);
+  letter-spacing:0.08em;text-transform:uppercase;display:block;margin-bottom:4px}
+.m-ctrl input[type=range]{width:100%;accent-color:var(--v);cursor:pointer}
+.m-hint{font-size:0.68rem;color:var(--t2);font-weight:300;margin-top:6px}
+/* preview sticky */
+.moldura-preview{position:sticky;top:72px}
+.prev-wrap{background:var(--n);border-radius:8px;
+  padding:20px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.prev-lbl{font-size:0.6rem;font-weight:600;letter-spacing:0.14em;
+  text-transform:uppercase;color:rgba(255,255,255,0.35)}
+#m-canvas{border-radius:50%;display:block;
+  box-shadow:0 0 0 2px var(--v),0 0 0 4px var(--l)}
+.btn-dl-moldura{width:100%;background:var(--l);color:var(--n);border:none;
+  font-family:'Barlow Condensed',sans-serif;font-weight:900;
+  font-size:0.82rem;letter-spacing:0.12em;text-transform:uppercase;
+  padding:13px;cursor:pointer;border-radius:2px;transition:background .15s}
+.btn-dl-moldura:hover{background:#9aab00}
+.btn-dl-moldura:disabled{background:var(--sep);color:var(--t2);cursor:not-allowed}
+.wpp-sim{background:#111B21;border-radius:6px;padding:12px 14px;
+  display:flex;align-items:center;gap:10px}
+.wpp-sim canvas{border-radius:50%;flex-shrink:0}
+.wpp-sim-txt h4{font-size:0.78rem;font-weight:600;color:#E9EDE0;margin-bottom:1px}
+.wpp-sim-txt p{font-size:0.68rem;color:#8696A0}
+.wpp-hint{font-size:0.6rem;color:var(--t2);text-align:center;margin-top:4px}
+.m-instrucao{background:var(--vl);border:1px solid var(--sep);border-radius:6px;
+  padding:12px 16px;margin-top:12px}
+.m-instrucao .mi-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;
+  font-size:0.6rem;letter-spacing:0.16em;text-transform:uppercase;
+  color:var(--v);margin-bottom:5px}
+.m-instrucao p{font-size:0.75rem;color:var(--t);line-height:1.6}
+.m-instrucao strong{color:var(--n);font-weight:600}
+@media(max-width:900px){
+  .moldura-sec{padding:60px 24px}
+  .moldura-layout{grid-template-columns:1fr}
+  .moldura-preview{position:static}
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <span class="logo-u">UNA</span><span class="logo-m">MAIS</span>
+  </a>
+  <div class="nav-r">
+    <a href="#programa">Programa</a>
+    <a href="#chapa">Chapa</a>
+    <a href="#moldura">Foto de apoio</a>
+    <a href="#materiais">Materiais</a>
+    <a href="#apoio">Apoiar</a>
+    <a href="#cta" class="nav-cta">WhatsApp</a>
+  </div>
+</nav>
+
+<!-- TICKER -->
+<div class="ticker">
+  <span class="tk-tag">UnaMais</span>
+  <div class="tk">
+    <span>Continuar o que deu certo e melhorar cada vez mais.</span>
+    <span>ADI 4.151 — pagamento em folha</span>
+    <span>Defesa jurídica permanente</span>
+    <span>Gestão responsável e prestação de contas</span>
+    <span>Valorização dos aposentados e pensionistas</span>
+    <span>Eleição UNASLAF 2026</span>
+    <span>Continuar o que deu certo e melhorar cada vez mais.</span>
+    <span>ADI 4.151 — pagamento em folha</span>
+    <span>Defesa jurídica permanente</span>
+    <span>Gestão responsável e prestação de contas</span>
+    <span>Valorização dos aposentados e pensionistas</span>
+    <span>Eleição UNASLAF 2026</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-l">
+    <div class="pill-tag">Eleição para Diretoria — UNASLAF</div>
+    <h1 class="hero-h">Continuar o<br>que deu certo<br><em>e melhorar<br>cada vez mais.</em></h1>
+    <p class="hero-sub">Conquistamos a <strong>ADI nº 4.151</strong>. A UnaMais vai garantir que esse direito chegue a cada servidor, aposentado e pensionista desta categoria.</p>
+    <div class="hero-btns">
+      <a href="#programa" class="btn-p">Ver o programa →</a>
+      <a href="#chapa" class="btn-o">Conhecer a chapa</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hs"><div class="hs-n">2004</div><div class="hs-l">Criação SRFP</div></div>
+      <div class="hs"><div class="hs-n">17<small style="font-size:.7em">a</small></div><div class="hs-l">De luta</div></div>
+      <div class="hs"><div class="hs-n">5</div><div class="hs-l">Compromissos</div></div>
+    </div>
+  </div>
+  <div class="hero-r">
+    <img src="ic_principal_unamais.png" alt="Candidato a Presidente — UnaMais">
+    <div class="lt">
+      <div class="lt-acc"></div>
+      <div class="lt-body">
+        <div class="lt-cargo">Candidato a Presidente — Chapa UnaMais</div>
+        <div class="lt-nome">[Nome do Candidato] (SP)</div>
+        <div class="lt-desc">Servidor da Receita Federal · Advogado</div>
+      </div>
+    </div>
+    <div class="hero-cd">
+      <div class="cd-lbl">Eleição em</div>
+      <div class="cd-row">
+        <div class="cd-u"><div class="cd-n" id="cd-d">--</div><div class="cd-s">dias</div></div>
+        <div class="cd-dot">:</div>
+        <div class="cd-u"><div class="cd-n" id="cd-h">--</div><div class="cd-s">hrs</div></div>
+        <div class="cd-dot">:</div>
+        <div class="cd-u"><div class="cd-n" id="cd-m">--</div><div class="cd-s">min</div></div>
+        <div class="cd-dot">:</div>
+        <div class="cd-u"><div class="cd-n" id="cd-s2">--</div><div class="cd-s">seg</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAIXA SLOGAN -->
+<div class="slogan-bar">
+  <span class="slogan-mark">Slogan</span>
+  <span class="slogan-txt">"Continuar o que deu certo e melhorar cada vez mais."</span>
+</div>
+
+<!-- NÚMEROS -->
+<div class="s"><div class="s-in">
+  <div class="nums rv">
+    <div class="num-c"><div class="num-v">2004</div><div class="num-l">Criação da Secretaria da Receita Previdenciária</div></div>
+    <div class="num-c"><div class="num-v">17<sup>a</sup></div><div class="num-l">De luta até a decisão do STF</div></div>
+    <div class="num-c"><div class="num-v">11</div><div class="num-l">Cargos em disputa nos três conselhos</div></div>
+    <div class="num-c"><div class="num-v">100<sup>%</sup></div><div class="num-l">Prestação de contas anual do programa</div></div>
+  </div>
+</div></div>
+
+<!-- TIMELINE -->
+<div class="s-g" id="historia"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">História</span><span class="sec-sub">A luta da categoria</span></div>
+  <h2 class="t rv">A luta que nos <em>trouxe até aqui</em></h2>
+  <div class="tl rv">
+    <div class="tl-track"></div>
+    <div class="tl-fill"></div>
+    <div class="tl-g">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-ano">2004</div><div class="tl-tx">Criação da Secretaria da Receita Previdenciária — categoria ganha identidade própria</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-ano">2007</div><div class="tl-tx">Extinção e redistribuição à Receita Federal sem a devida equiparação salarial</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-ano">2008</div><div class="tl-tx">Ajuizamento da ADI nº 4.151 no STF pela UNASLAF — 26/09/2008</div></div>
+      <div class="tl-item hi"><div class="tl-dot"></div><div class="tl-ano">2020</div><div class="tl-tx">Derrubada do Veto nº 8/2009 — vitória legislativa histórica da categoria</div></div>
+      <div class="tl-item hi"><div class="tl-dot"></div><div class="tl-ano">2024</div><div class="tl-tx">Vitória no STF — ADI 4.151 julgada procedente, direito à equiparação reconhecido</div></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-ano">Agora</div><div class="tl-tx">Batalha pela implementação — é aqui que a UnaMais entra</div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- PROGRAMA -->
+<div class="s" id="programa"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">Programa</span><span class="sec-sub">Nossos compromissos</span></div>
+  <div class="prog">
+    <div class="prog-stick rv">
+      <h2 class="t">Cinco<br>compro<br>missos.</h2>
+      <p class="lead">Cada item é verificável. Balanço público ao final de cada ano de mandato — o que foi cumprido e por quê.</p>
+    </div>
+    <div class="prog-lista">
+      <div class="pi rv"><div class="pi-n">01</div><div><h3>Implementação integral da ADI 4.151</h3><p>Enquadramento correto de todos os alcançados e pagamento retroativo via folha de pagamento, não via precatórios.</p><ul><li>Cobrança permanente junto à COGEP/RFB e MGI</li><li>Enfrentamento de qualquer tentativa de descaracterização</li><li>Informes periódicos e individualizados a cada associado</li></ul></div></div>
+      <div class="pi rv"><div class="pi-n">02</div><div><h3>Defesa jurídica permanente e de excelência</h3><p>Frente jurídica estruturada perante STF, STJ, CARF, AGU e Justiça Federal.</p><ul><li>Monitoramento dos Temas 45 e 831 (STF) e Tema 1.129 (STJ)</li><li>Atendimento orientativo com triagem clara e resposta ágil</li></ul></div></div>
+      <div class="pi rv"><div class="pi-n">03</div><div><h3>Gestão responsável e prestação de contas</h3><p>O associado tem direito à informação sobre a gestão — nos limites da LGPD, do sigilo fiscal e contábil e das normas estatutárias.</p><ul><li>Relatório de atividades periódico com metas e resultados verificáveis</li><li>Divulgação do balanço patrimonial após aprovação assemblear</li><li>Transparência nos contratos quanto ao objeto e valor global</li></ul></div></div>
+      <div class="pi rv"><div class="pi-n">04</div><div><h3>Comunicação moderna e proximidade com a base</h3><p>Expansão do UNA+, comunicação segmentada e encontros regionais em todos os estados.</p></div></div>
+      <div class="pi rv"><div class="pi-n">05</div><div><h3>Valorização dos aposentados e pensionistas</h3><p>Núcleo permanente de atendimento e prioridade absoluta nos efeitos da ADI 4.151.</p></div></div>
+    </div>
+  </div>
+</div></div>
+
+<!-- ADI STATUS -->
+<div class="s-g2"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">ADI 4.151</span><span class="sec-sub">Status da implementação</span></div>
+  <h2 class="t rv">Onde estamos — <em>onde precisamos chegar</em></h2>
+  <div class="adi-g rv">
+    <div class="adi-c ok"><div class="adi-badge">Concluído</div><div class="adi-ico">⚖️</div><h4>Decisão do STF</h4><p>ADI 4.151 julgada procedente. Direito à equiparação reconhecido definitivamente.</p></div>
+    <div class="adi-c ok"><div class="adi-badge">Concluído</div><div class="adi-ico">📋</div><h4>Trânsito em julgado</h4><p>Decisão definitiva, sem possibilidade de recurso pelo governo federal.</p></div>
+    <div class="adi-c hot"><div class="adi-badge">Em disputa agora</div><div class="adi-ico">🏛️</div><h4>Implementação administrativa</h4><p>COGEP/RFB e MGI definem o formato. Aqui está a batalha atual da categoria.</p></div>
+    <div class="adi-c pend"><div class="adi-badge">Meta UnaMais</div><div class="adi-ico">💰</div><h4>Pagamento em folha</h4><p>Diferenças retroativas chegando ao contracheque de cada servidor e inativo.</p></div>
+  </div>
+</div></div>
+
+<!-- CHAPA -->
+<div class="s" id="chapa"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">Chapa</span><span class="sec-sub">UnaMais</span></div>
+  <h2 class="t rv">Quem vai <em>lutar por você</em></h2>
+  <div class="pres-wrap rv">
+    <div class="pres-img">
+      <img src="ic_unamais_pedro.png" id="pres-photo" alt="Foto do integrante selecionado da Chapa UnaMais">
+      <div class="pres-lt">
+        <div class="pres-lt-acc"></div>
+        <div class="pres-lt-body">
+          <div class="pres-lt-cargo" id="pres-cargo-tag">Presidente — Chapa UnaMais</div>
+          <div class="pres-lt-nome" id="pres-nome-tag">[Nome do Candidato] (SP)</div>
+        </div>
+      </div>
+    </div>
+    <div class="pres-info">
+      <div class="pill-tag" id="pres-pill">Candidato a Presidente</div>
+      <h3 id="pres-h3">[Nome do Candidato]<br><em>(SP)</em></h3>
+      <p id="pres-p1">Servidor da Receita Federal e advogado com atuação direta nos principais processos que definem os direitos desta categoria.</p>
+      <p id="pres-p2"><strong>Por que candidato?</strong> Porque conquistamos a ADI 4.151 e precisamos de uma diretoria que não deixe essa vitória morrer na gaveta de um ministério.</p>
+      <button class="pres-reset" id="pres-reset" onclick="resetCandidate()">← Ver Presidente da Chapa</button>
+    </div>
+  </div>
+  <div class="rv">
+    <div class="grp-lbl">Conselho Executivo — Vice-Presidências</div>
+    <div class="cg" style="--cols:7">
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Administração</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Finanças</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Política de Classe</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Comunicação Social</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Assuntos Jurídicos</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Ass. Parlamentares</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="executivo" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">VP de Inativos</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+</div>
+    <div class="grp-lbl">Conselho Fiscal</div>
+    <div class="sub-lbl">Titulares</div>
+    <div class="cg" style="--cols:3">
+  <div class="mc" data-grupo="fiscal-titular" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Titular 1 — C. Fiscal</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="fiscal-titular" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Titular 2 — C. Fiscal</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="fiscal-titular" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Titular 3 — C. Fiscal</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+</div>
+    <div class="sub-lbl">Suplentes</div>
+    <div class="cg" style="--cols:3">
+  <div class="mc" data-grupo="fiscal-suplente" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Suplente 1 — C. Fiscal</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="fiscal-suplente" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Suplente 2 — C. Fiscal</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="fiscal-suplente" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Suplente 3 — C. Fiscal</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+</div>
+    <div class="grp-lbl">Conselho de Ética</div>
+    <div class="cg" style="--cols:3">
+  <div class="mc" data-grupo="etica" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Membro 1 — C. de Ética</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="etica" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Membro 2 — C. de Ética</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+  <div class="mc" data-grupo="etica" onclick="selectCandidate(this)">
+    <div class="mc-img" style="background-image:url('ic_unamais_pedro.png')"></div>
+    <div class="mc-info">
+      <span class="mc-cargo">Membro 3 — C. de Ética</span>
+      <span class="mc-nome">[A definir]</span>
+      <span class="mc-uf">Estado a definir</span>
+    </div>
+  </div>
+</div>
+  </div>
+</div></div>
+
+<!-- MANIFESTO -->
+<div class="s-v"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">Manifesto</span></div>
+  <div class="man rv">
+    <div class="man-q">"Continuar o que deu certo e melhorar cada vez mais."<em>— Chapa UnaMais</em></div>
+    <div class="man-body">
+      <p>Nos últimos anos, a UNASLAF demonstrou do que é capaz quando atua com seriedade técnica e firmeza institucional. Estivemos no STF, na AGU, no Ministério da Gestão e na Receita Federal defendendo aquilo que é nosso por direito.</p>
+      <p>A decisão na ADI nº 4.151 não foi um presente: foi o resultado de anos de trabalho jurídico qualificado e de uma associação que nunca abandonou seus filiados — <strong>ativos, aposentados e pensionistas.</strong></p>
+      <p>Nossa chapa nasce do encontro entre a experiência de quem construiu essas vitórias e a energia de quem quer fazer mais e melhor. Não propomos ruptura. Não propomos acomodação. Propomos <strong>continuidade com renovação.</strong></p>
+    </div>
+  </div>
+</div></div>
+
+
+<!-- MOLDURA INTERATIVA -->
+<div class="moldura-sec" id="moldura"><div style="max-width:1080px;margin:0 auto">
+  <div class="sec-h rv"><span class="sec-tag">Apoie</span><span class="sec-sub">Monte sua foto de perfil</span></div>
+  <h2 class="t rv">Mostre seu <em>apoio no WhatsApp</em></h2>
+  <p class="lead rv">Escolha uma moldura, adicione sua foto e baixe pronto — sem instalar nada, sem sair desta página.</p>
+  <div class="moldura-layout">
+
+    <!-- PAINEL ESQUERDO -->
+    <div>
+      <div class="moldura-painel rv">
+        <div class="mp-head"><span class="mp-tag">Passo 1</span><h3>Escolha a moldura</h3></div>
+        <div class="mp-body">
+          <div class="moldura-grid">
+            <div class="mo act" onclick="mSelectMoldura(0,this)">
+              <canvas id="mthumb0" width="72" height="72"></canvas>
+              <span>Clássica</span>
+            </div>
+            <div class="mo" onclick="mSelectMoldura(1,this)">
+              <canvas id="mthumb1" width="72" height="72"></canvas>
+              <span>Dark</span>
+            </div>
+            <div class="mo" onclick="mSelectMoldura(2,this)">
+              <canvas id="mthumb2" width="72" height="72"></canvas>
+              <span>Limão</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="moldura-painel rv" style="margin-top:14px">
+        <div class="mp-head"><span class="mp-tag">Passo 2</span><h3>Adicione sua foto</h3></div>
+        <div class="mp-body">
+          <div class="upload-zone" id="m-upload-zone">
+            <input type="file" id="m-file-input" accept="image/*" onchange="mHandleFile(this)">
+            <div class="uz-ico">📷</div>
+            <h4>Clique ou arraste sua foto aqui</h4>
+            <p>JPG, PNG ou WEBP · recortada em círculo automaticamente</p>
+            <span class="uz-btn">Escolher foto</span>
+          </div>
+          <div class="m-controls" id="m-controls">
+            <div class="m-ctrl">
+              <label>Zoom da foto</label>
+              <input type="range" id="m-zoom" min="0.5" max="3" step="0.01" value="1" oninput="mRender()">
+            </div>
+            <div class="m-ctrl">
+              <label>Mover horizontal</label>
+              <input type="range" id="m-ox" min="-200" max="200" step="1" value="0" oninput="mRender()">
+            </div>
+            <div class="m-ctrl">
+              <label>Mover vertical</label>
+              <input type="range" id="m-oy" min="-200" max="200" step="1" value="0" oninput="mRender()">
+            </div>
+            <p class="m-hint">Ajuste o zoom e a posição para centralizar seu rosto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PREVIEW -->
+    <div class="moldura-preview">
+      <div class="prev-wrap">
+        <div class="prev-lbl">Pré-visualização — 400×400px</div>
+        <canvas id="m-canvas" width="260" height="260"></canvas>
+        <button class="btn-dl-moldura" id="m-btn-dl" onclick="mDownload()" disabled>
+          ↓ Baixar foto de perfil
+        </button>
+      </div>
+      <div class="wpp-sim" style="margin-top:10px">
+        <canvas id="m-wpp" width="44" height="44"></canvas>
+        <div class="wpp-sim-txt">
+          <h4>Assim vai aparecer</h4>
+          <p>nas conversas do WhatsApp</p>
+        </div>
+      </div>
+      <div class="wpp-hint">Simulação de exibição</div>
+      <div class="m-instrucao">
+        <div class="mi-title">Como colocar no WhatsApp</div>
+        <p><strong>1.</strong> Baixe a imagem · <strong>2.</strong> Abra o WhatsApp · <strong>3.</strong> Perfil → Foto → Editar · <strong>4.</strong> Selecione a imagem baixada</p>
+      </div>
+    </div>
+
+  </div>
+</div></div>
+
+<!-- MATERIAIS -->
+<div class="s-g" id="materiais"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">Kit</span><span class="sec-sub">Materiais de campanha</span></div>
+  <h2 class="t rv">Materiais para <em>divulgar</em></h2>
+  <p class="lead rv">Baixe e compartilhe os materiais oficiais da UnaMais. Cada associado que divulga é um voto a mais.</p>
+  <div class="mat-g rv">
+    <a class="mat-c" href="#materiais"><div class="mat-ico">📱</div><h3>Redes Sociais</h3><p>Posts prontos para WhatsApp, Instagram e Facebook.</p><span class="em-breve">Em breve</span></a>
+    <a class="mat-c" href="#materiais"><div class="mat-ico">🖨️</div><h3>Panfletos e Folders</h3><p>Material para impressão e distribuição presencial.</p><span class="em-breve">Em breve</span></a>
+    <a class="mat-c" href="#materiais"><div class="mat-ico">🎬</div><h3>Vídeos de Campanha</h3><p>Vídeos para compartilhar nos grupos da categoria.</p><span class="em-breve">Em breve</span></a>
+    <a class="mat-c" href="#materiais"><div class="mat-ico">💬</div><h3>Frases e Slogans</h3><p>Mensagens prontas para copiar e colar.</p><span class="em-breve">Em breve</span></a>
+    <a class="mat-c" href="#materiais"><div class="mat-ico">🤝</div><h3>Kit Apoiadores</h3><p>Para quem quer ajudar ativamente na campanha.</p><span class="em-breve">Em breve</span></a>
+    <a class="mat-c" href="#materiais"><div class="mat-ico">📦</div><h3>Kit Completo</h3><p>Todos os materiais em um único arquivo.</p><span class="em-breve">Em breve</span></a>
+  </div>
+</div></div>
+
+<!-- FAQ -->
+<div class="s" id="faq"><div class="s-in">
+  <div class="sec-h rv"><span class="sec-tag">FAQ</span><span class="sec-sub">Dúvidas frequentes</span></div>
+  <h2 class="t rv">Perguntas <em>e respostas</em></h2>
+  <div class="faq rv">
+    <div class="fq"><div class="fq-q" onclick="faq(this.closest('.fq'))">O que é a ADI nº 4.151 e como ela me afeta? <span class="fq-ico">+</span></div><div class="fq-a"><p>A ADI nº 4.151 foi ajuizada pela UNASLAF em 26/09/2008 e julgada procedente pelo STF em 2024. Reconhece o direito à equiparação salarial dos servidores da extinta Receita Previdenciária com os colegas da Receita Federal, com efeitos retroativos — para ativos, aposentados e pensionistas.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="faq(this.closest('.fq'))">Por que o pagamento deve ser em folha e não via precatório? <span class="fq-ico">+</span></div><div class="fq-a"><p>Precatórios têm fila e podem demorar anos. O pagamento via folha é imediato e incorpora permanentemente os valores à remuneração. A UnaMais vai lutar para impedir que o governo use o regime de precatórios como forma de protelar o pagamento.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="faq(this.closest('.fq'))">Aposentados e pensionistas também são alcançados pela decisão? <span class="fq-ico">+</span></div><div class="fq-a"><p>Sim. A decisão do STF alcança ativos, aposentados e pensionistas. A UnaMais tem como prioridade garantir que nenhum inativo fique de fora — com núcleo dedicado de atendimento.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="faq(this.closest('.fq'))">Como a UnaMais vai prestar contas durante o mandato? <span class="fq-ico">+</span></div><div class="fq-a"><p>Relatório de atividades periódico com metas verificáveis e divulgação do balanço patrimonial após aprovação assemblear — respeitados os limites da LGPD, do sigilo fiscal e contábil e das normas estatutárias que reservam ao Conselho Fiscal e à Assembleia a fiscalização plena.</p></div></div>
+    <div class="fq"><div class="fq-q" onclick="faq(this.closest('.fq'))">O que é o UNA+ e o que vai mudar com a UnaMais? <span class="fq-ico">+</span></div><div class="fq-a"><p>O UNA+ é o assistente virtual da UNASLAF. A UnaMais propõe expandir o sistema com disponibilidade 24h e cobertura segmentada para ativos, aposentados e pensionistas.</p></div></div>
+  </div>
+</div></div>
+
+<!-- APOIO -->
+<div class="s-g2" id="apoio"><div class="s-in">
+  <div class="apoio">
+    <div class="apoio-l rv">
+      <div class="sec-h" style="margin-bottom:16px"><span class="sec-tag">Apoio</span><span class="sec-sub">Junte-se à UnaMais</span></div>
+      <h2 class="t">Declare<br>seu <em>apoio.</em></h2>
+      <p>Registre seu apoio à chapa UnaMais. Enviaremos todas as informações sobre a votação antes da eleição.</p>
+      <div class="redes">
+        <a href="https://wa.me/5519900000000" class="rede" target="_blank">📱 WhatsApp</a>
+        <a href="#" class="rede">📸 Instagram</a>
+        <a href="#" class="rede">▶️ YouTube</a>
+        <a href="#" class="rede">✉️ E-mail</a>
+      </div>
+    </div>
+    <div class="rv">
+      <div class="form" id="aform">
+        <input class="fi" type="text" id="an" placeholder="Nome completo">
+        <input class="fi" type="email" id="ae" placeholder="E-mail">
+        <select class="fi" id="auf"><option value="">Estado</option><option>AC</option><option>AL</option><option>AM</option><option>AP</option><option>BA</option><option>CE</option><option>DF</option><option>ES</option><option>GO</option><option>MA</option><option>MG</option><option>MS</option><option>MT</option><option>PA</option><option>PB</option><option>PE</option><option>PI</option><option>PR</option><option>RJ</option><option>RN</option><option>RO</option><option>RR</option><option>RS</option><option>SC</option><option>SE</option><option>SP</option><option>TO</option></select>
+        <select class="fi" id="acat"><option value="">Você é...</option><option>Servidor ativo</option><option>Aposentado</option><option>Pensionista</option></select>
+        <button class="btn-form" onclick="enviar()">Quero apoiar a UnaMais →</button>
+      </div>
+      <div class="ok-box" id="aok">✅ Apoio registrado! Entraremos em contato em breve.</div>
+    </div>
+  </div>
+</div></div>
+
+<!-- CTA -->
+<div class="cta-sec" id="cta"><div class="cta-inner">
+  <h2>Seu voto<br><em>muda tudo.</em></h2>
+  <p>Fale com nosso agente no WhatsApp. Tire dúvidas sobre a chapa, o programa e seus direitos.</p>
+  <a href="https://wa.me/5519900000000?text=Quero+saber+mais+sobre+a+chapa+UnaMais" class="btn-wpp" target="_blank">
+    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Falar com a UnaMais no WhatsApp
+  </a>
+</div></div>
+
+<footer>
+  <div class="flogo">UNA<span class="flogo-m">MAIS</span></div>
+  <p>Chapa UnaMais — Eleição para Diretoria da UNASLAF<br>Associação Nacional dos Servidores da Extinta Secretaria da Receita Previdenciária</p>
+</footer>
+
+<script>
+// Reveal
+var obs=new IntersectionObserver(function(e){
+  e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis')});
+},{threshold:0.08});
+document.querySelectorAll('.rv').forEach(function(el){obs.observe(el)});
+
+// Timeline fill
+var tlObs=new IntersectionObserver(function(e){
+  e.forEach(function(x){if(x.isIntersecting)x.target.classList.add('vis')});
+},{threshold:0.3});
+document.querySelectorAll('.tl').forEach(function(el){tlObs.observe(el)});
+
+// Nav ativo
+window.addEventListener('scroll',function(){
+  document.querySelectorAll('.nav-r a[href^="#"]').forEach(function(a){
+    var s=document.querySelector(a.getAttribute('href'));
+    if(!s)return;
+    var r=s.getBoundingClientRect();
+    r.top<=70&&r.bottom>70?a.classList.add('act'):a.classList.remove('act');
+  });
+});
+
+// FAQ
+function faq(fq){
+  var open=fq.classList.contains('open');
+  document.querySelectorAll('.fq').forEach(function(f){f.classList.remove('open')});
+  if(!open)fq.classList.add('open');
+}
+
+// Formulário
+function enviar(){
+  if(!document.getElementById('an').value||!document.getElementById('ae').value){
+    alert('Preencha nome e e-mail.');return;
+  }
+  document.getElementById('aform').style.display='none';
+  document.getElementById('aok').style.display='block';
+}
+
+// Countdown (atualizar para a data real da eleição)
+(function(){
+  var target=new Date('2026-11-20T09:00:00');
+  function tick(){
+    var diff=target-new Date();
+    if(diff<=0)return;
+    var d=Math.floor(diff/864e5),h=Math.floor((diff%864e5)/36e5),
+        m=Math.floor((diff%36e5)/6e4),s=Math.floor((diff%6e4)/1e3);
+    document.getElementById('cd-d').textContent=String(d).padStart(2,'0');
+    document.getElementById('cd-h').textContent=String(h).padStart(2,'0');
+    document.getElementById('cd-m').textContent=String(m).padStart(2,'0');
+    document.getElementById('cd-s2').textContent=String(s).padStart(2,'0');
+  }
+  tick();setInterval(tick,1000);
+})();
+
+// ══ SELEÇÃO DE CANDIDATO — CARDS DA CHAPA ══
+var presOriginal = null;
+
+var grupoInfo = {
+  'executivo': {
+    p1: 'Integra o Conselho Executivo da Chapa UnaMais, apoiando a presidência na gestão institucional e na execução do programa de continuidade e renovação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Responsável pela área indicada no cargo, em articulação direta com a presidência e as demais vice-presidências.'
+  },
+  'fiscal-titular': {
+    p1: 'Integra, como titular, o Conselho Fiscal da UNASLAF, responsável pela fiscalização contábil, financeira e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na verificação dos atos de gestão e na garantia da transparência exigida pelo Estatuto da UNASLAF.'
+  },
+  'fiscal-suplente': {
+    p1: 'Integra, como suplente, o Conselho Fiscal da UNASLAF, pronto(a) para assumir a titularidade sempre que necessário.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Reforça a fiscalização contábil, financeira e orçamentária da associação ao lado dos titulares.'
+  },
+  'etica': {
+    p1: 'Integra o Conselho de Ética da UNASLAF, responsável por zelar pela conduta institucional e pelos princípios estatutários da entidade.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na análise de condutas e no fortalecimento dos valores éticos que orientam a atuação da associação.'
+  }
+};
+
+// Texto individual por cargo — preenchido com conteúdo genérico (placeholder).
+// Edite cada p1/p2 livremente; se um cargo não estiver aqui, cai no texto por grupo (grupoInfo) acima.
+var cargoInfo = {
+  'VP de Administração': {
+    p1: 'Responde pela gestão administrativa da UNASLAF, com atuação direta na organização interna, no controle de processos e no suporte operacional à diretoria.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Garante a estrutura administrativa necessária para que as demais áreas da chapa UnaMais funcionem com eficiência.'
+  },
+  'VP de Finanças': {
+    p1: 'Responde pela gestão financeira da UNASLAF, acompanhando receitas, despesas e a execução orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Assegura transparência e solidez financeira para sustentar os projetos e compromissos da chapa UnaMais.'
+  },
+  'VP de Política de Classe': {
+    p1: 'Coordena a articulação política da categoria, representando os interesses dos servidores da extinta Receita Previdenciária junto a outras entidades e órgãos.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Fortalece a voz institucional da categoria nas discussões que afetam seus direitos.'
+  },
+  'VP de Comunicação Social': {
+    p1: 'Responde pela comunicação institucional da UNASLAF, mantendo associados, aposentados e pensionistas informados sobre a atuação da diretoria.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Garante clareza e transparência na divulgação das ações da chapa UnaMais.'
+  },
+  'VP de Assuntos Jurídicos': {
+    p1: 'Acompanha as ações judiciais de interesse da categoria, com atenção especial à implementação da ADI nº 4.151 e à defesa dos direitos dos servidores.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua em conjunto com a assessoria jurídica para garantir o avanço técnico das demandas da categoria.'
+  },
+  'VP de Ass. Parlamentares': {
+    p1: 'Responde pela articulação da UNASLAF junto ao Congresso Nacional e a órgãos governamentais, acompanhando temas legislativos de interesse da categoria.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua para ampliar o diálogo institucional da chapa UnaMais com o Poder Legislativo e o Executivo.'
+  },
+  'VP de Inativos': {
+    p1: 'Responde pela representação específica de aposentados e pensionistas, garantindo que suas demandas tenham atenção direta na gestão da UNASLAF.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Assegura que nenhum inativo fique de fora das conquistas da categoria, com atendimento e comunicação dedicados.'
+  },
+  'Titular 1 — C. Fiscal': {
+    p1: 'Integra, como titular, o Conselho Fiscal da UNASLAF, órgão estatutário responsável pela fiscalização contábil, financeira e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na verificação dos atos de gestão e na garantia da transparência exigida pelo Estatuto da UNASLAF.'
+  },
+  'Titular 2 — C. Fiscal': {
+    p1: 'Integra, como titular, o Conselho Fiscal da UNASLAF, órgão estatutário responsável pela fiscalização contábil, financeira e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na verificação dos atos de gestão e na garantia da transparência exigida pelo Estatuto da UNASLAF.'
+  },
+  'Titular 3 — C. Fiscal': {
+    p1: 'Integra, como titular, o Conselho Fiscal da UNASLAF, órgão estatutário responsável pela fiscalização contábil, financeira e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na verificação dos atos de gestão e na garantia da transparência exigida pelo Estatuto da UNASLAF.'
+  },
+  'Suplente 1 — C. Fiscal': {
+    p1: 'Integra, como suplente, o Conselho Fiscal da UNASLAF, pronto(a) para assumir a titularidade sempre que necessário, reforçando a fiscalização contábil e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Garante continuidade à fiscalização exercida pelo Conselho Fiscal, ao lado dos titulares.'
+  },
+  'Suplente 2 — C. Fiscal': {
+    p1: 'Integra, como suplente, o Conselho Fiscal da UNASLAF, pronto(a) para assumir a titularidade sempre que necessário, reforçando a fiscalização contábil e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Garante continuidade à fiscalização exercida pelo Conselho Fiscal, ao lado dos titulares.'
+  },
+  'Suplente 3 — C. Fiscal': {
+    p1: 'Integra, como suplente, o Conselho Fiscal da UNASLAF, pronto(a) para assumir a titularidade sempre que necessário, reforçando a fiscalização contábil e orçamentária da associação.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Garante continuidade à fiscalização exercida pelo Conselho Fiscal, ao lado dos titulares.'
+  },
+  'Membro 1 — C. de Ética': {
+    p1: 'Integra o Conselho de Ética da UNASLAF, órgão estatutário responsável por zelar pela conduta institucional e pelos princípios éticos da entidade.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na análise de condutas e no fortalecimento dos valores éticos que orientam a atuação da associação.'
+  },
+  'Membro 2 — C. de Ética': {
+    p1: 'Integra o Conselho de Ética da UNASLAF, órgão estatutário responsável por zelar pela conduta institucional e pelos princípios éticos da entidade.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na análise de condutas e no fortalecimento dos valores éticos que orientam a atuação da associação.'
+  },
+  'Membro 3 — C. de Ética': {
+    p1: 'Integra o Conselho de Ética da UNASLAF, órgão estatutário responsável por zelar pela conduta institucional e pelos princípios éticos da entidade.',
+    p2Label: 'Papel na chapa:',
+    p2: 'Atua na análise de condutas e no fortalecimento dos valores éticos que orientam a atuação da associação.'
+  }
+};
+
+function capturePresOriginal(){
+  presOriginal = {
+    photo: document.getElementById('pres-photo').src,
+    cargoTag: document.getElementById('pres-cargo-tag').textContent,
+    nomeTag: document.getElementById('pres-nome-tag').textContent,
+    pill: document.getElementById('pres-pill').textContent,
+    h3: document.getElementById('pres-h3').innerHTML,
+    p1: document.getElementById('pres-p1').innerHTML,
+    p2: document.getElementById('pres-p2').innerHTML
+  };
+}
+
+function extractBgUrl(el){
+  var bg = el.style.backgroundImage || '';
+  var m = bg.match(/url\((['"]?)(.*?)\1\)/);
+  return m ? m[2] : '';
+}
+
+function selectCandidate(card){
+  document.querySelectorAll('.mc.active').forEach(function(c){ c.classList.remove('active'); });
+  card.classList.add('active');
+
+  var imgDiv = card.querySelector('.mc-img');
+  var foto = extractBgUrl(imgDiv);
+  var cargo = card.querySelector('.mc-cargo').textContent;
+  var nome = card.querySelector('.mc-nome').textContent;
+  var uf = card.querySelector('.mc-uf').textContent;
+  var grupo = card.getAttribute('data-grupo');
+  var info = cargoInfo[cargo] || grupoInfo[grupo] || grupoInfo['executivo'];
+
+  if(foto){ document.getElementById('pres-photo').src = foto; }
+  document.getElementById('pres-cargo-tag').textContent = cargo;
+  document.getElementById('pres-nome-tag').textContent = nome + ' (' + uf + ')';
+  document.getElementById('pres-pill').textContent = cargo;
+  document.getElementById('pres-h3').innerHTML = nome + '<br><em>(' + uf + ')</em>';
+  document.getElementById('pres-p1').textContent = info.p1;
+  document.getElementById('pres-p2').innerHTML = '<strong>' + info.p2Label + '</strong> ' + info.p2;
+  document.getElementById('pres-reset').style.display = 'inline-block';
+
+  var presWrap = document.getElementById('chapa');
+  if(presWrap){
+    var top = presWrap.getBoundingClientRect().top + window.pageYOffset - 70;
+    window.scrollTo({top:top, behavior:'smooth'});
+  }
+}
+
+function resetCandidate(){
+  if(!presOriginal) return;
+  document.querySelectorAll('.mc.active').forEach(function(c){ c.classList.remove('active'); });
+  document.getElementById('pres-photo').src = presOriginal.photo;
+  document.getElementById('pres-cargo-tag').textContent = presOriginal.cargoTag;
+  document.getElementById('pres-nome-tag').textContent = presOriginal.nomeTag;
+  document.getElementById('pres-pill').textContent = presOriginal.pill;
+  document.getElementById('pres-h3').innerHTML = presOriginal.h3;
+  document.getElementById('pres-p1').innerHTML = presOriginal.p1;
+  document.getElementById('pres-p2').innerHTML = presOriginal.p2;
+  document.getElementById('pres-reset').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', capturePresOriginal);
+
+// ══ MOLDURA INTERATIVA ══
+var mImg = null, mAtiva = 0;
+
+// ── FUNÇÃO COMPARTILHADA: texto UNAMAIS com box duplo de contraste fixo ──
+// "UNA" sempre em box preto/letra branca, "MAIS" sempre em box limão/letra preta
+function mLogoBox(ctx, s, cy_frac, scale) {
+  scale = scale || 1;
+  var fontSize = s * 0.082 * scale;
+  ctx.font = '900 ' + fontSize + 'px "Barlow Condensed",Arial Black,sans-serif';
+  ctx.textBaseline = 'middle';
+
+  var wUna  = ctx.measureText('UNA').width;
+  var wMais = ctx.measureText('MAIS').width;
+  var padX  = fontSize * 0.32;
+  var padY  = fontSize * 0.42;
+  var boxH  = fontSize + padY * 2;
+  var boxUnaW  = wUna  + padX * 2;
+  var boxMaisW = wMais + padX * 2;
+  var gap = fontSize * 0.1;
+  var totalW = boxUnaW + gap + boxMaisW;
+  var startX = s/2 - totalW/2;
+  var boxY = s * cy_frac - boxH/2;
+
+  // box UNA — preto, letra branca
+  ctx.fillStyle = '#0F1A1A';
+  ctx.fillRect(startX, boxY, boxUnaW, boxH);
+  ctx.fillStyle = '#FFFFFF';
+  ctx.textAlign = 'center';
+  ctx.fillText('UNA', startX + boxUnaW/2, boxY + boxH/2 + fontSize*0.04);
+
+  // box MAIS — limão, letra preta
+  var maisX = startX + boxUnaW + gap;
+  ctx.fillStyle = '#B8C400';
+  ctx.fillRect(maisX, boxY, boxMaisW, boxH);
+  ctx.fillStyle = '#0F1A1A';
+  ctx.fillText('MAIS', maisX + boxMaisW/2, boxY + boxH/2 + fontSize*0.04);
+
+  return {startX:startX, endX:maisX+boxMaisW, top:boxY, bottom:boxY+boxH};
+}
+
+var mMolduras = [
+  // ── 0: TECH CLEAN — Verde teal, anel fino único ──
+  function(ctx,s){
+    var cx=s/2, cy=s/2, r=s/2;
+    // anel único fino — teal
+    ctx.beginPath();ctx.arc(cx,cy,r-3,0,Math.PI*2);
+    ctx.strokeStyle='#0D7C7C';ctx.lineWidth=6;ctx.stroke();
+    // segundo anel mais fino, limão, levemente recolhido — dá profundidade sem poluir
+    ctx.beginPath();ctx.arc(cx,cy,r-11,0,Math.PI*2);
+    ctx.strokeStyle='#B8C400';ctx.lineWidth=2;ctx.stroke();
+    // faixa reta na base (não curva) com leve transparência
+    var bandH = s*0.22;
+    ctx.save();
+    ctx.beginPath();ctx.arc(cx,cy,r-3,0,Math.PI*2);ctx.clip();
+    ctx.fillStyle='rgba(15,26,26,0.82)';
+    ctx.fillRect(0, s-bandH, s, bandH);
+    ctx.restore();
+    // logo com box duplo
+    mLogoBox(ctx, s, 0.885, 0.95);
+    // linha fina de apoio acima do logo
+    ctx.strokeStyle='rgba(255,255,255,0.18)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(s*0.30, s*0.80);ctx.lineTo(s*0.70, s*0.80);ctx.stroke();
+    // texto categoria pequeno, reto, sem curva
+    ctx.font='600 '+(s*0.026)+'px "Barlow Condensed",Arial,sans-serif';
+    ctx.fillStyle='rgba(255,255,255,0.55)';ctx.textAlign='center';
+    ctx.fillText('ELEIÇÃO UNASLAF · 2026', cx, s*0.775);
+  },
+
+  // ── 1: TECH CLEAN — Dark absoluto, contraste máximo ──
+  function(ctx,s){
+    var cx=s/2, cy=s/2, r=s/2;
+    // anel branco fino único
+    ctx.beginPath();ctx.arc(cx,cy,r-3,0,Math.PI*2);
+    ctx.strokeStyle='rgba(255,255,255,0.25)';ctx.lineWidth=2;ctx.stroke();
+    // anel teal interno mais grosso
+    ctx.beginPath();ctx.arc(cx,cy,r-9,0,Math.PI*2);
+    ctx.strokeStyle='#0D7C7C';ctx.lineWidth=4;ctx.stroke();
+    // faixa reta na base
+    var bandH = s*0.2;
+    ctx.save();
+    ctx.beginPath();ctx.arc(cx,cy,r-3,0,Math.PI*2);ctx.clip();
+    ctx.fillStyle='rgba(0,0,0,0.88)';
+    ctx.fillRect(0, s-bandH, s, bandH);
+    ctx.restore();
+    // logo
+    mLogoBox(ctx, s, 0.895, 0.9);
+    // linha de apoio
+    ctx.strokeStyle='rgba(184,196,0,0.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(s*0.32, s*0.815);ctx.lineTo(s*0.68, s*0.815);ctx.stroke();
+    ctx.font='600 '+(s*0.024)+'px "Barlow Condensed",Arial,sans-serif';
+    ctx.fillStyle='rgba(255,255,255,0.45)';ctx.textAlign='center';
+    ctx.fillText('CONTINUAR E MELHORAR', cx, s*0.79);
+  },
+
+  // ── 2: TECH CLEAN — Limão como acento de borda, fundo neutro ──
+  function(ctx,s){
+    var cx=s/2, cy=s/2, r=s/2;
+    // anel limão único, mais espesso (esse é o card "vibrante" mas sem poluição)
+    ctx.beginPath();ctx.arc(cx,cy,r-4,0,Math.PI*2);
+    ctx.strokeStyle='#B8C400';ctx.lineWidth=8;ctx.stroke();
+    // anel teal fino interno
+    ctx.beginPath();ctx.arc(cx,cy,r-13,0,Math.PI*2);
+    ctx.strokeStyle='#0D7C7C';ctx.lineWidth=2;ctx.stroke();
+    // faixa reta na base — preta para máximo contraste com o logo
+    var bandH = s*0.22;
+    ctx.save();
+    ctx.beginPath();ctx.arc(cx,cy,r-4,0,Math.PI*2);ctx.clip();
+    ctx.fillStyle='rgba(15,26,26,0.85)';
+    ctx.fillRect(0, s-bandH, s, bandH);
+    ctx.restore();
+    // logo
+    mLogoBox(ctx, s, 0.885, 0.95);
+    // linha de apoio
+    ctx.strokeStyle='rgba(184,196,0,0.45)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(s*0.30, s*0.80);ctx.lineTo(s*0.70, s*0.80);ctx.stroke();
+    ctx.font='600 '+(s*0.026)+'px "Barlow Condensed",Arial,sans-serif';
+    ctx.fillStyle='rgba(255,255,255,0.55)';ctx.textAlign='center';
+    ctx.fillText('VOTE UNAMAIS · 2026', cx, s*0.775);
+  }
+];
+
+
+function mRenderFrame(canvas,size,img,zoom,ox,oy){
+  canvas.width=size;canvas.height=size;
+  var ctx=canvas.getContext('2d'),cx=size/2,cy=size/2;
+  ctx.clearRect(0,0,size,size);
+  ctx.save();
+  ctx.beginPath();ctx.arc(cx,cy,cx-2,0,Math.PI*2);ctx.clip();
+  ctx.fillStyle='#1A3535';ctx.fillRect(0,0,size,size);
+  if(img){
+    var nat=Math.min(img.width,img.height);
+    var sx=(img.width-nat)/2,sy=(img.height-nat)/2;
+    var ds=size*zoom,dx=cx-ds/2+ox,dy=cy-ds/2+oy;
+    ctx.drawImage(img,sx,sy,nat,nat,dx,dy,ds,ds);
+  } else {
+    ctx.font='300 '+(size*.055)+'px Barlow,Arial';
+    ctx.fillStyle='rgba(255,255,255,0.25)';
+    ctx.textAlign='center';ctx.textBaseline='middle';
+    ctx.fillText('Sua foto aqui',cx,cy);
+  }
+  ctx.restore();
+  mMolduras[mAtiva](ctx,size);
+}
+
+function mRender(){
+  var z=parseFloat(document.getElementById('m-zoom').value);
+  var ox=parseFloat(document.getElementById('m-ox').value);
+  var oy=parseFloat(document.getElementById('m-oy').value);
+  var prev=document.getElementById('m-canvas');
+  var scale=260/400;
+  mRenderFrame(prev,260,mImg,z,ox*scale,oy*scale);
+  // wpp thumb
+  var off=document.createElement('canvas');
+  mRenderFrame(off,400,mImg,z,ox,oy);
+  var wpp=document.getElementById('m-wpp');
+  wpp.width=44;wpp.height=44;
+  var wctx=wpp.getContext('2d');
+  wctx.save();wctx.beginPath();wctx.arc(22,22,22,0,Math.PI*2);wctx.clip();
+  wctx.drawImage(off,0,0,44,44);wctx.restore();
+  document.getElementById('m-btn-dl').disabled=!mImg;
+}
+
+function mHandleFile(inp){
+  if(!inp.files||!inp.files[0])return;
+  var rd=new FileReader();
+  rd.onload=function(e){
+    var img=new Image();
+    img.onload=function(){mImg=img;document.getElementById('m-controls').style.display='block';mRender();};
+    img.src=e.target.result;
+  };
+  rd.readAsDataURL(inp.files[0]);
+}
+
+function mSelectMoldura(idx,el){
+  mAtiva=idx;
+  document.querySelectorAll('.mo').forEach(function(o){o.classList.remove('act')});
+  el.classList.add('act');mRender();
+}
+
+function mDownload(){
+  var z=parseFloat(document.getElementById('m-zoom').value);
+  var ox=parseFloat(document.getElementById('m-ox').value);
+  var oy=parseFloat(document.getElementById('m-oy').value);
+  var off=document.createElement('canvas');
+  mRenderFrame(off,400,mImg,z,ox,oy);
+  var a=document.createElement('a');
+  a.href=off.toDataURL('image/png');
+  a.download='unamais_foto_perfil.png';a.click();
+}
+
+function mInitThumbs(){
+  [0,1,2].forEach(function(i){
+    var c=document.getElementById('mthumb'+i),sv=mAtiva;
+    c.width=72;c.height=72;mAtiva=i;
+    mRenderFrame(c,72,null,1,0,0);mAtiva=sv;
+  });
+}
+
+// drag&drop
+document.addEventListener('DOMContentLoaded',function(){
+  mInitThumbs();mRender();
+  var uz=document.getElementById('m-upload-zone');
+  if(!uz)return;
+  uz.addEventListener('dragover',function(e){e.preventDefault();uz.classList.add('drag')});
+  uz.addEventListener('dragleave',function(){uz.classList.remove('drag')});
+  uz.addEventListener('drop',function(e){
+    e.preventDefault();uz.classList.remove('drag');
+    var file=e.dataTransfer.files[0];
+    if(!file||!file.type.startsWith('image/'))return;
+    var fi=document.getElementById('m-file-input');
+    var dt=new DataTransfer();dt.items.add(file);fi.files=dt.files;
+    mHandleFile(fi);
+  });
+});
+
+</script>
+</body>
+</html>
